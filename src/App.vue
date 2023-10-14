@@ -1,7 +1,15 @@
-<script setup></script>
+<script setup>
+import { ElConfigProvider } from 'element-plus'
+
+const size = 'small'
+const zIndex = 3000
+</script>
 
 <template>
-  <RouterView />
+  <el-config-provider :size="size" :z-index="zIndex">
+    <el-button>Default</el-button>
+    <RouterView />
+  </el-config-provider>
 </template>
 
 <style scoped lang="scss"></style>

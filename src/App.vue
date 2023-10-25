@@ -7,7 +7,6 @@ const zIndex = 3000
 
 <template>
   <el-config-provider :size="size" :z-index="zIndex">
-    <el-button>Default</el-button>
     <RouterView />
   </el-config-provider>
 </template>

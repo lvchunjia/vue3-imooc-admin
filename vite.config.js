@@ -1,8 +1,9 @@
 import { fileURLToPath, URL } from 'node:url'
-
+import path from 'path'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 // ElementPlus自动按需导入
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
@@ -22,7 +23,6 @@ export default defineConfig({
       // 自动导入 Element Plus 相关函数，如：ElMessage, ElMessageBox... (带样式)
       resolvers: [
         ElementPlusResolver(),
-
         // 自动导入图标组件
         IconsResolver({
           prefix: 'Icon'
@@ -41,6 +41,12 @@ export default defineConfig({
     }),
     Icons({
       autoInstall: true
+    }),
+    createSvgIconsPlugin({
+      // 指定需要缓存的图标文件夹
+      iconDirs: [path.resolve(process.cwd(), 'src/assets/svg')],
+      // 指定symbolId格式
+      symbolId: 'icon-[name]'
     })
   ],
   resolve: {
